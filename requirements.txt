@@ -1,0 +1,10 @@
+pytest==4.5.0
+pytest-html==1.20.0
+pytest-rerunfailures==7.0
+allure-pytest==2.8.7
+allure-python-commons==2.8.7
+configparser==3.5.0
+PyYAML==3.13
+requests==2.22.0
+simplejson==3.16.0
+Crypto

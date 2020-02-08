@@ -1,0 +1,9 @@
+---
+Project:
+  dec: "项目数据"
+  sql1: "UPDATE `smallapi`.`mc_projects` SET `name` = '项目8' WHERE `id` = 8"
+  sql2: "UPDATE `smallapi`.`mc_projects` SET `name` = '项目7' WHERE `id` = 7"
+
+Login:
+  dec: "用户数据"
+  sql: "UPDATE `smallapi`.`mc_projects` SET `name` = '项目6' WHERE `id` = 6"

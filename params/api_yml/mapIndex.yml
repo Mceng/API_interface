@@ -1,0 +1,17 @@
+---
+MapIndex:
+  dec: "大屏数据"
+  parameters:
+    -
+      url: /monitor3/superviseIndex/totalOverview
+      data:
+        customerId: "7853120986329448448"
+      header:
+        "Content-Type": "application/json;charset=UTF-8"
+
+    -
+      url: /monitor3/superviseIndex/getCustomer
+      data:
+      header: {
+                  "Content-Type": "application/json;charset=UTF-8"
+              }

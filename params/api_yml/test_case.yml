@@ -1,0 +1,44 @@
+---
+get_case:
+  dec: "get-post接口"
+  parameters:
+  - url: /projects/
+    method: get
+    data:
+      page: 2
+    header:
+      "Content-Type": "application/json"
+      "Authorization": "Basic YWRtaW46YWRtaW4="
+
+post_case:
+  dec: "post接口"
+  parameters:
+  - url: /projects/
+    method: post
+    data:
+      "name": "项目名称2"
+      "leader": "项目负责人1"
+      "tester": "项目测试人员1"
+      "programmer": "开发人员1"
+      "publish_app": "项目信息2"
+      "desc": "简要描述1"
+    header:
+      "Content-Type": "application/json"
+      "Authorization": "Basic YWRtaW46YWRtaW4="
+
+put_case:
+  dec: "put接口"
+  parameters:
+  - url: /projects/5/
+    method: put
+    data:
+      "id": 5
+      "name": "项目名称666"
+      "leader": "项目负责2"
+      "tester": "项目测试人2"
+      "programmer": "开发人员2"
+      "publish_app": "项目信息2"
+      "desc": "简要描述2"
+    header:
+      "Content-Type": "application/json"
+      "Authorization": "Basic YWRtaW46YWRtaW4="

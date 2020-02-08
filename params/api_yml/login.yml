@@ -1,0 +1,26 @@
+---
+Login:
+  dec: "登录接口"
+  parameters:
+    -
+      url: /monitor3/auth_user/login
+      data:
+          userName: 13800138001
+          password: 138001
+          captcha:
+          Code: false
+          rememberme: false
+      json:
+      header: {
+                 "Content-Type": "application/x-www-form-urlencoded"
+              }
+
+    -
+      url: /settings/basic.json
+      data:
+      header: {
+                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko)\
+                  Chrome/67.0.3396.99 Safari/537.36",
+                 "Content-Type": "keep-alive",
+                 "Cookie": "read_mode=day; "
+              }
