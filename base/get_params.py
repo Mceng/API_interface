@@ -29,10 +29,33 @@ class GetParams:
 
             for parameter in parameters:
                 parameter['url'] = Config().base_url + parameter['url']
-                # parameter['header']['Cookie'] = self.cookie
+                # parameter['header']=self.operate_header(parameter['header'])
                 data_list.append(parameter)
             _page_list[page] = data_list
         return _page_list
+
+    def operate_header(self,key):
+        """
+        处理头部
+        :param key:
+        :return:
+        """
+        if key is None:
+            header = {}
+        elif key == 'header1':
+            header =  Config().header1
+        elif key == 'header2':
+            header = Config().header2
+        else:
+            return '头部处理错误'
+        header['Cookie'] = self.cookie
+        return header
+
+    def operate_date(self,file_name,key_name):
+        data = self.get_params_list(file_name)
+
+
+
 
     def get_db_data(self,key,way='one'):
         """
@@ -47,5 +70,5 @@ class GetParams:
 
 if __name__ == '__main__':
     lists = GetParams()
-    print(lists.get_db_data('Project_count'))
-    print(lists.get_db_data('Login'))
+    print(lists.get_params_list('test_case'))
+    # print(lists.get_db_data('Login'))

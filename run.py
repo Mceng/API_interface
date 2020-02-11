@@ -17,14 +17,16 @@
 import sys
 
 import pytest
-
 from utils.shell import Shell
 from utils import log
 from base.element_path import Element
 from utils.send_email import SendMail
 
-if __name__ == '__main__':
-    log = log.MyLog()
+sys.path.append(Element.Allure_Path)
+
+def run():
+    # logging = log.MyLog()
+    # log = log.MyLog()
     # log.info('初始化配置文件')
     # log.error('执行用例失败，请检查环境配置')
 
@@ -41,11 +43,12 @@ if __name__ == '__main__':
     try:
         Shell.run_shell(cmd)
     except Exception:
-        log.error('执行用例失败，请检查环境配置')
+        # log.error('执行用例失败，请检查环境配置')
         raise
-
 
     # 发送邮件
     # SendMail().send_mail()
 
 
+if __name__ == '__main__':
+    run()

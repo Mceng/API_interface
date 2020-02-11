@@ -23,4 +23,7 @@ class Element():
     CONFIG = PATH("../config/config.ini")
     PARAMS = PATH("../params/api_yml")
     ASSERT_SQL = PATH("../params/assert_sql.yml")
+    Allure_Path=PATH("../reports/allure-2.12.1/bin")
+
+
 

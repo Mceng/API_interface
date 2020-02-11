@@ -9,3 +9,5 @@ out
 gen
 /case/test_case/.pytest_cache/
 /.pytest_cache/
+/reports/html/
+/reports/xml/

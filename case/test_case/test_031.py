@@ -15,13 +15,19 @@ def teardown_function():
 def test_post():
     print("正在执行 ---- test_case_---test_one")
     x  =  "this"
+
     assert 'h' in x
     print("=========================================================")
 
 def check_one():
     print("正在执行 ----check_one--- test_two")
-    x  =  "this"
-    assert hasattr(x,'check')
+    try:
+        2>9
+    except:
+        raise
+    x = "this"
+    assert hasattr(x, 'check')
+
     print("=========================================================")
 
 if __name__ == '__main__':

@@ -7,4 +7,3 @@ configparser==3.5.0
 PyYAML==3.13
 requests==2.22.0
 simplejson==3.16.0
-Crypto

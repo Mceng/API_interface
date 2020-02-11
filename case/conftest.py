@@ -47,7 +47,7 @@ def session_init():
     数据准备
     :return:
     """
-
+    # allure.environment(测试环境="online", hostName="host", 执行人="XX", 测试项目="线上接口测试")
 
     # 1、实例化
     common = CommonUtil()

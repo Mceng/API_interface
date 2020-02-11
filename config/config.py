@@ -22,6 +22,10 @@ class Config:
         # base_url
         self.base_url = self.get_conf('base_url', 'url')
 
+        # 头部
+        self.header1 = self.get_conf('header','header1')
+        self.header2 = self.get_conf('header','header2')
+
         # 数据库
         self.mysql_host = self.get_conf('mysql', 'host')
         self.mysql_port = self.get_conf('mysql', 'port')
