@@ -24,6 +24,9 @@ from utils.send_email import SendMail
 
 sys.path.append(Element.Allure_Path)
 
+
+
+
 def run():
     # logging = log.MyLog()
     # log = log.MyLog()
@@ -38,16 +41,21 @@ def run():
     # pytest.main(args)
 
     pytest.main()
-    cmd = 'allure generate %s -o %s' % (xml_report_path, html_report_path)
 
+
+    # run_allure_html(xml_report_path, html_report_path)
+
+    # 发送邮件
+    # SendMail().send_mail()
+
+
+def run_allure_html(xml_report_path, html_report_path):
     try:
+        cmd = 'allure generate %s -o %s' % (xml_report_path, html_report_path)
         Shell.run_shell(cmd)
     except Exception:
         # log.error('执行用例失败，请检查环境配置')
         raise
-
-    # 发送邮件
-    # SendMail().send_mail()
 
 
 if __name__ == '__main__':
