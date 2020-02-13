@@ -15,7 +15,7 @@ class Test_MapIndex():
 
     @allure.story('基本信息')
     # @pytest.mark.usefixture("common_init")
-    def test_totalOverview_pass(self,common_init,request_init,assert_init,params_init):
+    def test1_totalOverview_pass(self,common_init,request_init,assert_init,params_init):
 
         """
         用例描述：安全运行天数、历史警告次数、监测点总数、设备完好率

@@ -28,10 +28,8 @@ sys.path.append(Element.Allure_Path)
 
 
 def run():
-    # logging = log.MyLog()
-    # log = log.MyLog()
-    # log.info('初始化配置文件')
-    # log.error('执行用例失败，请检查环境配置')
+    logger = log.MyLog()
+    # logger.error('执行失败')
 
     xml_report_path = Element.REPORT_XML
     html_report_path = Element.REPORT_HTML
@@ -43,7 +41,7 @@ def run():
     pytest.main()
 
 
-    # run_allure_html(xml_report_path, html_report_path)
+    run_allure_html(xml_report_path, html_report_path)
 
     # 发送邮件
     # SendMail().send_mail()
