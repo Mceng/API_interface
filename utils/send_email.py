@@ -6,6 +6,7 @@
 
 import time
 import smtplib
+from functools import reduce
 from email.mime.text import MIMEText
 from email.header import Header
 from email.utils import formataddr
@@ -22,8 +23,20 @@ class SendMail:
         self.config = Config()
         self.log = log.MyLog()
 
-    def get_consts(self):
-        pass
+    def get_pass_fail(self):
+        time_list = consts.TIMES_LIST
+        total = len(time_list)
+        time_count = reduce(lambda x, y: x + y, time_list)
+        if total:
+            ave_time = time_count / len(time_list)
+        else:
+            ave_time = 0
+
+        success_count = len(consts.RESULT_LIST)
+        fail_count = len(time_list) - success_count
+        success_rate = float('%.4f' % (success_count / total))
+
+        return [total, success_count, fail_count, success_rate, ave_time]
 
     def send_mail(self):
 
@@ -33,8 +46,9 @@ class SendMail:
         sender = self.config.mail_sender
         receiver = self.config.mail_receiver.split(';')
         subject = '接口自动化测试报告'
-        # content = "此次一共运行接口个数为 {0} 个，通过个数为 {1} 个，失败个数为 {2} 个，通过率为 {3} %，失败率为 {4} % ".format(get_pass_fail()[0],get_pass_fail()[1],get_pass_fail()[2],get_pass_fail()[3],get_pass_fail()[4])
-        content = "此次一共运行接口个数为 "
+        content = "此次一共运行接口个数为 {0} 个，通过个数为 {1} 个，失败个数为 {2} 个，通过率为 {3} %，平均时间为 {4} % " \
+            .format(self.get_pass_fail()[0], self.get_pass_fail()[1], self.get_pass_fail()[2], self.get_pass_fail()[3],
+                    self.get_pass_fail()[4])
 
         # 配置第三方 SMTP 服务，如qq
         smtpserver = self.config.mail_smtpserver
