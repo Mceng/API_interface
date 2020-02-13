@@ -53,7 +53,6 @@ def session_init():
     """
     env = consts.API_ENV_DEBUG
 
-
     # 1、cookie准备
     OperToken().generate_cookie(env)
 
