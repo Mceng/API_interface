@@ -35,7 +35,7 @@ class SendMail:
         success_count = len(consts.RESULT_LIST)
         fail_count = len(time_list) - success_count
         success_rate = float('%.4f' % (success_count / total))
-
+        # 返回用例总数，成功总数，失败总数，成功率，平均时间
         return [total, success_count, fail_count, success_rate, ave_time]
 
     def send_mail(self):
