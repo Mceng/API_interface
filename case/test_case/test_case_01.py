@@ -36,7 +36,10 @@ class TestCase:
         assert assert_init.assert_time(response['time_consuming'], 1100)
         consts.RESULT_LIST.append('True')
 
-    @allure.story('get用例2')
+    @allure.story('get2不带参数用例')
+    @allure.severity('blocker')
+    @allure.issue("http://www.baidu.com")
+    @allure.testcase("http://www.tgkkk.com")
     def test_case_get2(self, assert_init, params_init, request_init):
         """
         get获取数据不带参数
@@ -59,13 +62,17 @@ class TestCase:
         """
         post获取数据，带参数
         """
+
         self.params = params_init.get_params_list('test_case')
         url = self.params['post_case'][0]['url']
         header = self.params['post_case'][0]['header']
         data = self.params['post_case'][0]['data']
+        with allure.step("步骤1"):
+            allure.attach(url, header,data)
+        with allure.step("校验结果"):
+            allure.attach('期望结果', '成功')
 
         response = request_init.post_request(url=url, data=None,json=data, header=header)
-
         assert assert_init.assert_code(response['code'], 400)
         assert assert_init.assert_time(response['time_consuming'], 1100)
         consts.RESULT_LIST.append('True')

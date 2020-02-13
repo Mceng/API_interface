@@ -19,6 +19,7 @@ class GetParams:
         self.common= CommonUtil()
         self.cookie = OperToken().get_cookie()
         self.db = Opera_DB()
+        self.base_url = Config().base_url
 
     def get_params_list(self,file_name):
         self.params = self.common.read_params(file_name)
@@ -26,9 +27,8 @@ class GetParams:
         for page, value in self.params.items():
             parameters = value['parameters']
             data_list = []
-
             for parameter in parameters:
-                parameter['url'] = Config().base_url + parameter['url']
+                parameter['url'] = self.base_url + parameter['url']
                 # parameter['header']=self.operate_header(parameter['header'])
                 data_list.append(parameter)
             _page_list[page] = data_list
@@ -36,7 +36,7 @@ class GetParams:
 
     def operate_header(self,key):
         """
-        处理头部
+        重新处理头部
         :param key:
         :return:
         """
@@ -50,12 +50,6 @@ class GetParams:
             return '头部处理错误'
         header['Cookie'] = self.cookie
         return header
-
-    def operate_date(self,file_name,key_name):
-        data = self.get_params_list(file_name)
-
-
-
 
     def get_db_data(self,key,way='one'):
         """

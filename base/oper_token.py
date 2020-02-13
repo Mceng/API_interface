@@ -8,30 +8,32 @@
 import logging,requests
 from base.element_path import Element
 from utils.common import CommonUtil
+from config.config import Config
 
 class OperToken:
     def __init__(self):
         self.common = CommonUtil()
 
-    def write_cookie(self):
-        logging.info('初始化用例，获取cookie')
-        url = 'https://iparking.ibotech.com.cn/monitor3/auth_user/login'
-        data = {"userName": "13800138001",
-                "password": 138001,
-                "captcha": "",
-                "Code": "false",
-                "rememberMe": "false"
-                }
-        r = requests.post(url=url, data=data)
-        cookieid = requests.utils.dict_from_cookiejar(r.cookies)
-        cookie = "sid=" + cookieid['sid']
-        self.common.write_file(Element.COOKIE_FILE, cookie)
-        print(cookie)
-        logging.info('结束始化用例，已获取到cookie')
+    def generate_cookie(self,env):
+
+        if env == 'debug':
+            logging.info('初始化用例，获取cookie')
+            url = Config().debug_base_url + Config().debug_loginHost
+            data = eval(Config().debug_loginInfo)
+            r = requests.post(url=url, data=data)
+            cookieid = requests.utils.dict_from_cookiejar(r.cookies)
+            cookie = "sid=" + cookieid['sid']
+            self.common.write_file(Element.COOKIE_FILE, cookie)
+            print(cookie)
+            logging.info('结束始化用例，已获取到cookie')
+        elif env == 'release':
+            pass
+        else:
+            print('环境错误')
 
     def get_cookie(self):
         return self.common.read_file(Element.COOKIE_FILE)
 
 if __name__ == '__main__':
     o = OperToken()
-    o.write_cookie()
+    o.generate_cookie('debug')

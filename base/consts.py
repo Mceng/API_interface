@@ -8,7 +8,8 @@
 全局变量
 """
 # 接口全局配置
-
+API_ENV_DEBUG = 'debug'
+API_ENV_RELEASE = 'release'
 
 # 接口响应时间list，单位毫秒
 TIMES_LIST = []

@@ -22,6 +22,24 @@ class Config:
         # base_url
         self.base_url = self.get_conf('base_url', 'url')
 
+        # private_debug测试服务
+        self.debug_base_url = self.get_conf('private_debug', 'base_url')
+        self.debug_tester = self.get_conf('private_debug', 'tester')
+        self.debug_environment = self.get_conf('private_debug', 'env')
+        self.debug_versionCode = self.get_conf('private_debug', 'versionCode')
+        self.debug_loginHost = self.get_conf('private_debug', 'loginHost')
+        self.debug_loginInfo = self.get_conf('private_debug', 'loginInfo')
+
+        # online_release测试服务
+        self.release_base_url = self.get_conf('online_release', 'base_url')
+        self.release_tester = self.get_conf('online_release', 'tester')
+        self.release_environment = self.get_conf('online_release', 'env')
+        self.release_versionCode = self.get_conf('online_release', 'versionCode')
+        self.release_loginHost = self.get_conf('online_release', 'loginHost')
+        self.release_loginInfo = self.get_conf('online_release', 'loginInfo')
+
+
+
         # 头部
         self.header1 = self.get_conf('header','header1')
         self.header2 = self.get_conf('header','header2')
@@ -54,4 +72,4 @@ class Config:
 
 if __name__ == '__main__':
     a = Config()
-    print(a.base_url)
+    print(a.debug_base_url)
