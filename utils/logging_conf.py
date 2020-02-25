@@ -15,7 +15,7 @@ import logging,time
 
 
 def loggering():
-    log_date = time.strftime("%Y%m%d")
+    log_date = time.strftime("%Y-%m-%d")
     log_file = log_date + '_run_logging.log'
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',

@@ -8,7 +8,7 @@ import os
 import yaml
 from base.element_path import Element
 from utils.operation_db import Opera_DB
-
+import shutil
 
 class CommonUtil:
     def __init__(self):
@@ -100,6 +100,26 @@ class CommonUtil:
         :return:
         """
         return self.db.commit_data(sql)
+
+    def remore_filedir(self,path):
+        """
+        删除文件夹下的所有文件
+        :param path:
+        :return:
+        """
+        if os.path.isdir(path):
+            filelist = []
+            filelist = os.listdir(path)  # 列出该目录下的所有文件名
+            for f in filelist:
+                filepath = os.path.join(path, f)
+                if os.path.isfile(filepath):
+                    os.remove(filepath)  # 若为文件，则直接删除
+                    print(str(filepath) + " removed!")
+                elif os.path.isdir(filepath):
+                    shutil.rmtree(filepath, True) #若为文件夹，则删除该文件夹及文件夹内所有文件
+                    print("dir " + str(filepath) + " removed!")
+            shutil.rmtree(path, True) #最后删除path总文件夹
+
 
 if __name__ == '__main__':
     c = CommonUtil()
