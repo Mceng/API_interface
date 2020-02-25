@@ -18,18 +18,18 @@ import sys
 
 import pytest
 from utils.shell import Shell
-from utils import log
 from base.element_path import Element
 from utils.send_email import SendMail
-
 sys.path.append(Element.Allure_Path)
+from utils.logging_conf import loggering
+import logging
 
 
 
 
 def run():
-    logger = log.MyLog()
-    # logger.error('执行失败')
+    loggering()
+    logging.info('运行测试用例')
 
     xml_report_path = Element.REPORT_XML
     html_report_path = Element.REPORT_HTML

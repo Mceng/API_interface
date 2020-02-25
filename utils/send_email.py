@@ -13,7 +13,7 @@ from email.utils import formataddr
 from email.mime.multipart import MIMEMultipart
 from base.element_path import Element
 from base import consts
-from utils import log
+import logging
 from config.config import Config
 
 
@@ -21,7 +21,7 @@ class SendMail:
 
     def __init__(self):
         self.config = Config()
-        self.log = log.MyLog()
+
 
     def get_pass_fail(self):
         time_list = consts.TIMES_LIST
@@ -82,9 +82,9 @@ class SendMail:
             smtp = smtplib.SMTP_SSL(smtpserver, 465)
             smtp.login(username, password)
             smtp.sendmail(sender, receiver, msg.as_string())
-            self.log.info('===成功发送邮件===')
+            logging.info('===成功发送邮件===')
         except Exception as e:
-            self.log.error('===无法发送邮件，请检查==={}'.format(e))
+            logging.error('===无法发送邮件，请检查==={}'.format(e))
         finally:
             smtp.quit()
 

@@ -9,14 +9,14 @@
 封装Assert方法
 
 """
-from utils import log
 # from Common import Consts
 import json
+import logging
 
 
 class Assertions:
     def __init__(self):
-        self.log = log.MyLog()
+        pass
 
     def assert_code(self, code, expected_code):
         """
@@ -29,9 +29,8 @@ class Assertions:
             assert code == expected_code
             return True
         except:
-            self.log.error("statusCode error, expected_code is %s, statusCode is %s " % (expected_code, code))
+            logging.error("statusCode error, expected_code is %s, statusCode is %s " % (expected_code, code))
             # Consts.RESULT_LIST.append('fail')
-
             raise
 
     def assert_body(self, body, body_msg, expected_msg):
@@ -48,7 +47,8 @@ class Assertions:
             return True
 
         except:
-            self.log.error("Response body msg != expected_msg, expected_msg is %s, body_msg is %s" % (expected_msg, body_msg))
+            logging.error(
+                "Response body msg != expected_msg, expected_msg is %s, body_msg is %s" % (expected_msg, body_msg))
             # Consts.RESULT_LIST.append('fail')
 
             raise
@@ -67,7 +67,7 @@ class Assertions:
             return True
 
         except:
-            self.log.error("Response body Does not contain expected_msg, expected_msg is %s" % expected_msg)
+            logging.error("Response body Does not contain expected_msg, expected_msg is %s" % expected_msg)
             # Consts.RESULT_LIST.append('fail')
 
             raise
@@ -84,9 +84,8 @@ class Assertions:
             return True
 
         except:
-            self.log.error("Response body != expected_msg, expected_msg is %s, body is %s" % (expected_msg, body))
+            logging.error("Response body != expected_msg, expected_msg is %s, body is %s" % (expected_msg, body))
             # Consts.RESULT_LIST.append('fail')
-
             raise
 
     def assert_time(self, time, expected_time):
@@ -101,9 +100,6 @@ class Assertions:
             return True
 
         except:
-            self.log.error("Response time > expected_time, expected_time is %s, time is %s" % (expected_time, time))
+            logging.error("Response time > expected_time, expected_time is %s, time is %s" % (expected_time, time))
             # Consts.RESULT_LIST.append('fail')
-
             raise
-
-

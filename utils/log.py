@@ -7,7 +7,7 @@
 
 """
 封装log方法
-
+弃用
 """
 
 import logging

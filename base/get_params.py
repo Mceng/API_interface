@@ -8,7 +8,7 @@
 读取yaml测试数据
 
 """
-
+import logging
 from utils.common import CommonUtil
 from config.config import Config
 from base.oper_token import OperToken

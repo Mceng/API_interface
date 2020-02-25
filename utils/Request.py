@@ -12,7 +12,6 @@ import os
 import random
 import requests
 
-from base.oper_token import OperToken
 from requests_toolbelt import MultipartEncoder
 from base import consts
 
@@ -21,7 +20,6 @@ from base import consts
 class Request:
 
     def __init__(self):
-        # self.cookie = OperToken().get_cookie()
         pass
 
     def get_request(self, url, data, header=None):

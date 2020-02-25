@@ -6,6 +6,7 @@
 
 # coding = utf-8
 import traceback
+import logging
 
 import pymysql
 from config.config import Config
@@ -28,7 +29,8 @@ class Opera_DB:
             # self.cursor = self.db.cursor()
             return self.db
         except Exception as e:
-            print('数据库连接失败{}'.format(e))
+            logging.error('数据库连接失败{}'.format(e))
+
 
     def commit_data(self, sql):
         """
