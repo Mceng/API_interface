@@ -10,6 +10,7 @@ from base.element_path import Element
 from utils.operation_db import Opera_DB
 import shutil
 
+
 class CommonUtil:
     def __init__(self):
         self.db = Opera_DB()
@@ -84,16 +85,16 @@ class CommonUtil:
 
         return self.read_assert_sql()[key]['sql']
 
-    def get_sql_data(self,key,way='one'):
+    def get_sql_data(self, key, way='one'):
         """
         通过关键字获取对应的sql执行后返回的数据
         :param key: 关键字
         :param way: 定义返回多少条数据，one一条，all是所有
         :return:
         """
-        return self.db.select_data(self.get_sql(key),way)
+        return self.db.select_data(self.get_sql(key), way)
 
-    def execute_sql(self,sql):
+    def execute_sql(self, sql):
         """
         执行增删改操作
         :param sql:sql
@@ -101,7 +102,7 @@ class CommonUtil:
         """
         return self.db.commit_data(sql)
 
-    def remore_filedir(self,path):
+    def remore_filedir(self, path):
         """
         删除文件夹下的所有文件
         :param path:
@@ -116,13 +117,30 @@ class CommonUtil:
                     os.remove(filepath)  # 若为文件，则直接删除
                     print(str(filepath) + " removed!")
                 elif os.path.isdir(filepath):
-                    shutil.rmtree(filepath, True) #若为文件夹，则删除该文件夹及文件夹内所有文件
+                    shutil.rmtree(filepath, True)  # 若为文件夹，则删除该文件夹及文件夹内所有文件
                     print("dir " + str(filepath) + " removed!")
-            shutil.rmtree(path, True) #最后删除path总文件夹
+            shutil.rmtree(path, True)  # 最后删除path总文件夹
+
+    def generate_environment(self, env_data):
+        """
+        生成运行环境xml文件
+        :param data:
+        :return:
+        """
+        message = []
+        for key, values in env_data.items():
+            message.append("""<parameter>
+                            <key>{}</key>
+                            <value>{}</value>
+                            </parameter>
+            """.format(key, values))
+        xml = "<environment>" + ''.join(message) + "</environment>"
+        self.write_file(Element.ENVIRONMENT,xml)
+
 
 
 if __name__ == '__main__':
     c = CommonUtil()
-    data = '{"AGE":"ANEE"}'
-    print(c.read_params('test_case'))
+    data = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+    print(c.generate_environment(data))
     # print(c.read_assert_sql())
