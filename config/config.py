@@ -6,7 +6,6 @@
 
 
 from configparser import ConfigParser
-from utils import log
 from base.element_path import Element
 
 
@@ -14,7 +13,6 @@ class Config:
 
     def __init__(self):
         self.config = ConfigParser()
-        self.log = log.MyLog()
         self.conf_path = Element.CONFIG
 
         self.config.read(self.conf_path, encoding='utf-8')
@@ -68,6 +66,29 @@ class Config:
         :return:
         """
         return self.config.get(title, value)
+
+    def get_env(self,env):
+        if env == 'debug':
+            env = {
+                'base_url':self.debug_base_url,
+                'tester':self.debug_tester,
+                'environment':self.debug_environment,
+                'versionCode':self.debug_versionCode,
+                'loginHost':self.debug_loginHost,
+                'loginInfo':self.debug_loginInfo
+            }
+
+        elif env == 'release':
+            env = {
+                'base_url': self.release_base_url,
+                'tester': self.release_tester,
+                'environment': self.release_environment,
+                'versionCode': self.release_versionCode,
+                'loginHost': self.release_loginHost,
+                'loginInfo': self.release_loginInfo
+            }
+        else:env=()
+        return env
 
 
 if __name__ == '__main__':

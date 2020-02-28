@@ -11,15 +11,12 @@ from utils.common import CommonUtil
 from base.element_path import Element
 from base.oper_token import OperToken
 from utils.Request import Request
-from utils.log import MyLog
 from utils.Assert import Assertions
 from base.get_params import GetParams
 from base import consts
 from utils.data_cleanup import Data_Cleanup
+from config.config import Config
 
-
-def evn():
-    return consts.API_ENV_DEBUG
 
 @pytest.fixture(scope='session')
 def common_init():
@@ -37,11 +34,6 @@ def request_init():
 
 
 @pytest.fixture(scope='session')
-def log():
-    return MyLog()
-
-
-@pytest.fixture(scope='session')
 def assert_init():
     return Assertions()
 
@@ -52,9 +44,14 @@ def session_init():
     :return:
     """
     env = consts.API_ENV_DEBUG
+    # 1、生成环境
+    env_key=Config().get_env(env)
+    CommonUtil().generate_environment(env_key)
 
-    # 1、cookie准备
+    # 2、cookie准备
     OperToken().generate_cookie(env)
+
+
 
     yield
     # 后置操作

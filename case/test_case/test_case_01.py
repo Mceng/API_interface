@@ -25,11 +25,11 @@ class TestCase:
         """
         get获取数据，带参数
         """
-        self.params = params_init.get_params_list('test_case')
-        url = self.params['get_case'][0]['url']
-        data = self.params['get_case'][0]['data']
-        header = self.params['get_case'][0]['header']
-        method = self.params['get_case'][0]['method']
+        self.params = params_init.get_params_list('test_case')['get_case'][0]
+        url = self.params['url']
+        data = self.params['data']
+        header = self.params['header']
+        method = self.params['method']
 
         response = request_init.run_request(method=method, url=url, data=data, header=header)
         count = params_init.get_db_data('Project_count')['count']
