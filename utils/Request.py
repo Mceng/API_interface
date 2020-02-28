@@ -136,6 +136,31 @@ class Request:
 
         return self.process_response(response)
 
+    def delete_request(self, url,json=None,data=None, header=None):
+        """
+        delete请求
+        :param url:
+        :param data:
+        :param header:
+        :return:
+        """
+
+        try:
+            response = requests.delete(url=url, json=json,data=data ,headers=header)
+
+        except requests.RequestException as e:
+            print('%s%s' % ('RequestException url: ', url))
+            print(e)
+            return ()
+
+        except Exception as e:
+            print('%s%s' % ('Exception url: ', url))
+            print(e)
+            return ()
+
+
+        return self.process_response(response)
+
     def process_response(self,response):
         """
 
