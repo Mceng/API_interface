@@ -9,6 +9,7 @@
 """
 
 import subprocess
+import logging
 
 
 class Shell:
@@ -16,4 +17,6 @@ class Shell:
     def run_shell(cmd):
         output, errors = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
         o = output.decode("utf-8")
+        if errors :
+            logging.error(errors.decode("GBK"))
         return o
