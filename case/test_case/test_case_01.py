@@ -15,9 +15,11 @@ from base import consts
 # allure.attach # 用于向测试报告中输入一些附加的信息，通常是一些测试数据信息
 # @pytest.allure.step # 用于将一些通用的函数作为测试步骤输出到报告，调用此函数的地方会向报告中输出步骤
 
+
 @allure.feature('测试模块')
 class TestCase:
 
+    @allure.severity('blocker')
     @allure.story('get用例1')
     def test_case_get1(self, assert_init, params_init, request_init):
         """
@@ -27,8 +29,9 @@ class TestCase:
         url = self.params['get_case'][0]['url']
         data = self.params['get_case'][0]['data']
         header = self.params['get_case'][0]['header']
+        method = self.params['get_case'][0]['method']
 
-        response = request_init.get_request(url=url, data=data, header=header)
+        response = request_init.run_request(method=method, url=url, data=data, header=header)
         count = params_init.get_db_data('Project_count')['count']
 
         assert assert_init.assert_code(response['code'], 200)
@@ -58,6 +61,7 @@ class TestCase:
         consts.RESULT_LIST.append('True')
 
     @allure.story('post用例')
+    @allure.severity('critical')
     def test_case_post1(self, assert_init, params_init, request_init):
         """
         post获取数据，带参数
@@ -68,28 +72,24 @@ class TestCase:
         header = self.params['post_case'][0]['header']
         data = self.params['post_case'][0]['data']
         with allure.step("步骤1"):
-            allure.attach(url, header,data)
+            allure.attach(url, header, data)
         with allure.step("校验结果"):
             allure.attach('期望结果', '成功')
 
-        response = request_init.post_request(url=url, data=None,json=data, header=header)
+        response = request_init.post_request(url=url, data=None, json=data, header=header)
         assert assert_init.assert_code(response['code'], 400)
         assert assert_init.assert_time(response['time_consuming'], 1100)
         consts.RESULT_LIST.append('True')
 
-
     @allure.story('put用例')
-    def test_case_put(self,params_init,assert_init,request_init):
+    @allure.severity('Minor')
+    def test_case_put(self, params_init, assert_init, request_init):
         self.params = params_init.get_params_list('test_case')
         url = self.params['put_case'][0]['url']
         header = self.params['put_case'][0]['header']
         data = self.params['put_case'][0]['data']
-        response = request_init.put_request(url=url,json=data,data=None,header=header)
+        response = request_init.put_request(url=url, json=data, data=None, header=header)
 
         assert assert_init.assert_code(response['code'], 200)
         assert assert_init.assert_time(response['time_consuming'], 1100)
         consts.RESULT_LIST.append('True')
-
-
-
-

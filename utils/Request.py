@@ -22,6 +22,23 @@ class Request:
     def __init__(self):
         pass
 
+
+    def run_request(self,method,*args,**kwargs):
+        if method == 'post':
+            res = self.post_request(*args,**kwargs)
+        elif method == 'get':
+            res = self.get_request(*args,**kwargs)
+        elif method == 'put':
+            res = self.put_request(*args,**kwargs)
+        elif method == 'delete':
+            res = self.delete_request(*args,**kwargs)
+        elif method == 'post_multipart':
+            res = self.post_request_multipart(*args,**kwargs)
+        else:
+            res='请求方法错误，请检查'
+        return res
+
+
     def get_request(self, url, data, header=None):
         """
         Get请求
