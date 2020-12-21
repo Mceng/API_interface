@@ -8,5 +8,5 @@ WORKDIR /code
 #RUN pip install pip -U
 ADD . /code/
 
-RUN pip install -r requirements.txt -i https://pypi. .com/simple
+RUN pip install -r requirements.txt -i https://pypi.doubanio.com/simple
 CMD ["pytest","run.py"]

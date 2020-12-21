@@ -62,6 +62,7 @@ class TestCase:
 
     @allure.story('post用例')
     @allure.severity('critical')
+    # @pytest.mark.parametrize()
     def test_case_post1(self, assert_init, params_init, request_init):
         """
         post获取数据，带参数
@@ -71,10 +72,10 @@ class TestCase:
         url = self.params['post_case'][0]['url']
         header = self.params['post_case'][0]['header']
         data = self.params['post_case'][0]['data']
-        with allure.step("步骤1"):
-            allure.attach(url, header, data)
-        with allure.step("校验结果"):
-            allure.attach('期望结果', '成功')
+        # with allure.step("步骤1"):
+        #     allure.attach(url, header, data)
+        # with allure.step("校验结果"):
+        #     allure.attach('期望结果', '成功')
 
         response = request_init.post_request(url=url, data=None, json=data, header=header)
         assert assert_init.assert_code(response['code'], 400)
